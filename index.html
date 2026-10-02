@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>Abyssal Echoes: Hadal Terminal (Android Edition)</title>
+    <meta name="description" content="Android-exclusive offline psychological survival horror roguelike terminal with procedural descent, adaptive entity sentience, and neural telemetry." />
+    <meta property="og:title" content="Abyssal Echoes: Hadal Terminal (Android Edition)" />
+    <meta property="og:description" content="Android-exclusive offline psychological survival horror roguelike terminal with procedural descent, adaptive entity sentience, and neural telemetry." />
+    <meta property="og:type" content="website" />
+    <meta name="theme-color" content="#050508" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="AbyssalHad" />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <script>
+      // Cleanly intercept and suppress any Vite development WebSocket / send connection errors in dev proxy
+      window.addEventListener('unhandledrejection', function(e) {
+        if (e && e.reason && (typeof e.reason.message === 'string') && (e.reason.message.includes("reading 'send'") || e.reason.message.includes('WebSocket') || e.reason.message.includes('vite'))) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      });
+      window.addEventListener('error', function(e) {
+        if (e && e.message && (typeof e.message === 'string') && (e.message.includes("reading 'send'") || e.message.includes('WebSocket') || e.message.includes('vite'))) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      });
+    </script>
+  </head>
+  <body class="bg-[#05050a] text-slate-100 select-none overflow-x-hidden antialiased">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

@@ -1,0 +1,6 @@
+{
+  "name": "Abyssal Echoes: Omega Definitive",
+  "description": "Definitive psychological survival horror roguelike terminal with procedural descent, sound synthesis, tactical crafting, and entity evasion.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

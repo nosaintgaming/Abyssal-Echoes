@@ -1,0 +1,600 @@
+@import "tailwindcss";
+
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  html, body {
+    background-color: #050508;
+    color: #c0c8e0;
+    font-family: 'Courier New', Courier, monospace, 'Segoe UI', Tahoma, sans-serif;
+    min-height: 100vh;
+    min-height: 100dvh;
+    overflow-x: hidden;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior: none;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    padding-left: env(safe-area-inset-left, 0px);
+    padding-right: env(safe-area-inset-right, 0px);
+  }
+
+  body[dir="rtl"] {
+    direction: rtl;
+    text-align: right;
+  }
+}
+
+/* CRT Scanlines Overlay */
+.scanlines {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  pointer-events: none;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.42) 50%);
+  background-size: 100% 4px;
+  z-index: 40;
+  opacity: 0.55;
+}
+
+/* CRT Vignette */
+.crt-vignette {
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  pointer-events: none;
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.95);
+  z-index: 39;
+}
+
+.critical-vignette {
+  box-shadow: inset 0 0 130px rgba(255, 30, 30, 0.6) !important;
+  animation: pulse-red 1.2s infinite alternate;
+}
+
+@keyframes pulse-red {
+  0% { opacity: 0.7; }
+  100% { opacity: 1; }
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #080910;
+}
+::-webkit-scrollbar-thumb {
+  background: #3a4168;
+  border-radius: 3px;
+}
+
+/* Horror Jitter & Eerie Breathing */
+@keyframes horror-jitter {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-1.5px, 1px); }
+  40% { transform: translate(1px, -1.5px); }
+  60% { transform: translate(-1px, -1px); }
+  80% { transform: translate(1.5px, 1px); }
+  100% { transform: translate(0, 0); }
+}
+
+.animate-horror-jitter {
+  animation: horror-jitter 0.25s infinite alternate;
+}
+
+@keyframes dread-pulse {
+  0% { box-shadow: 0 0 10px rgba(255, 0, 0, 0.2); }
+  50% { box-shadow: 0 0 30px rgba(255, 0, 0, 0.65); }
+  100% { box-shadow: 0 0 10px rgba(255, 0, 0, 0.2); }
+}
+
+.dread-pulse-glow {
+  animation: dread-pulse 2s infinite ease-in-out;
+}
+
+@keyframes lidar-sweep {
+  0% { transform: translateY(-100%); opacity: 0; }
+  30% { opacity: 0.85; }
+  70% { opacity: 0.85; }
+  100% { transform: translateY(100%); opacity: 0; }
+}
+
+.animate-lidar-sweep {
+  animation: lidar-sweep 2.8s infinite linear;
+}
+
+@keyframes flesh-undulate {
+  0% { transform: scale(1) translateY(0); }
+  50% { transform: scale(1.025) translateY(-1.5px); }
+  100% { transform: scale(1) translateY(0); }
+}
+
+.animate-flesh-undulate {
+  animation: flesh-undulate 4s infinite ease-in-out;
+}
+
+@keyframes eye-twitch {
+  0%, 85%, 100% { transform: translate(0, 0); }
+  87% { transform: translate(-3px, 2px); }
+  90% { transform: translate(2px, -2px); }
+  93% { transform: translate(-1px, -1px); }
+  96% { transform: translate(3px, 1px); }
+}
+
+.animate-eye-twitch {
+  animation: eye-twitch 4.5s infinite ease-in-out;
+}
+
+@keyframes sonar-radiate {
+  0% { transform: scale(0.2); opacity: 0.9; }
+  100% { transform: scale(2.4); opacity: 0; }
+}
+
+.animate-sonar-radiate {
+  animation: sonar-radiate 2.5s infinite cubic-bezier(0.1, 0.4, 0.6, 1);
+}
+
+@keyframes glitch-flicker {
+  0% { opacity: 1; filter: drop-shadow(0 0 2px rgba(255,0,0,0.5)); }
+  7% { opacity: 0.4; filter: hue-rotate(90deg) contrast(200%); }
+  9% { opacity: 1; filter: none; }
+  34% { opacity: 1; }
+  36% { opacity: 0.65; transform: skewX(-2deg); }
+  38% { opacity: 1; transform: none; }
+  72% { opacity: 0.3; filter: drop-shadow(0 0 8px red); }
+  74% { opacity: 1; filter: none; }
+  100% { opacity: 1; }
+}
+
+.animate-glitch-flicker {
+  animation: glitch-flicker 6s infinite;
+}
+
+/* Psychological Horror Chamber Glitch Animations */
+@keyframes glitch-slice-h1 {
+  0% {
+    clip-path: inset(18% 0 72% 0);
+    transform: translate(-6px, 1px) skewX(-3deg);
+    opacity: 0.9;
+  }
+  20% {
+    clip-path: inset(54% 0 32% 0);
+    transform: translate(8px, -2px) skewX(2deg);
+    opacity: 1;
+  }
+  40% {
+    clip-path: inset(8% 0 84% 0);
+    transform: translate(-10px, 2px) skewX(-4deg);
+    opacity: 0.85;
+  }
+  60% {
+    clip-path: inset(76% 0 12% 0);
+    transform: translate(7px, 1px) skewX(3deg);
+    opacity: 0.95;
+  }
+  80% {
+    clip-path: inset(36% 0 50% 0);
+    transform: translate(-5px, -1px) skewX(-2deg);
+    opacity: 0.9;
+  }
+  100% {
+    clip-path: inset(18% 0 72% 0);
+    transform: translate(-6px, 1px) skewX(-3deg);
+    opacity: 0.9;
+  }
+}
+
+@keyframes glitch-slice-h2 {
+  0% {
+    clip-path: inset(62% 0 25% 0);
+    transform: translate(6px, -1px) skewX(2deg);
+    opacity: 0.85;
+  }
+  25% {
+    clip-path: inset(28% 0 60% 0);
+    transform: translate(-8px, 2px) skewX(-3deg);
+    opacity: 1;
+  }
+  50% {
+    clip-path: inset(80% 0 8% 0);
+    transform: translate(9px, -2px) skewX(4deg);
+    opacity: 0.8;
+  }
+  75% {
+    clip-path: inset(42% 0 45% 0);
+    transform: translate(-6px, 1px) skewX(-2deg);
+    opacity: 0.95;
+  }
+  100% {
+    clip-path: inset(62% 0 25% 0);
+    transform: translate(6px, -1px) skewX(2deg);
+    opacity: 0.85;
+  }
+}
+
+@keyframes glitch-chromatic-tear {
+  0% {
+    filter: drop-shadow(4px 0 0 rgba(255, 30, 80, 0.85)) drop-shadow(-4px 0 0 rgba(0, 240, 255, 0.85));
+    transform: translate(0, 0);
+  }
+  25% {
+    filter: drop-shadow(-6px 0 0 rgba(255, 30, 80, 0.95)) drop-shadow(6px 0 0 rgba(0, 240, 255, 0.95));
+    transform: translate(-2px, 1px);
+  }
+  50% {
+    filter: drop-shadow(7px 0 0 rgba(255, 30, 80, 0.9)) drop-shadow(-7px 0 0 rgba(0, 240, 255, 0.9));
+    transform: translate(3px, -2px);
+  }
+  75% {
+    filter: drop-shadow(-4px 0 0 rgba(255, 30, 80, 0.85)) drop-shadow(4px 0 0 rgba(0, 240, 255, 0.85));
+    transform: translate(-1px, 2px);
+  }
+  100% {
+    filter: drop-shadow(4px 0 0 rgba(255, 30, 80, 0.85)) drop-shadow(-4px 0 0 rgba(0, 240, 255, 0.85));
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes glitch-scanline-bar {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.9;
+  }
+  85% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+@keyframes sanity-critical-tremor {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-1px, 1px); }
+  40% { transform: translate(1.5px, -0.5px); }
+  60% { transform: translate(-1px, -1px); }
+  80% { transform: translate(1px, 1px); }
+  100% { transform: translate(0, 0); }
+}
+
+.animate-glitch-slice-1 {
+  animation: glitch-slice-h1 0.18s infinite alternate steps(2);
+}
+
+.animate-glitch-slice-2 {
+  animation: glitch-slice-h2 0.22s infinite alternate steps(2);
+}
+
+.animate-glitch-chromatic-tear {
+  animation: glitch-chromatic-tear 0.14s infinite steps(2);
+}
+
+.animate-glitch-scanline-bar {
+  animation: glitch-scanline-bar 0.35s infinite linear;
+}
+
+.animate-sanity-critical-tremor {
+  animation: sanity-critical-tremor 0.15s infinite ease-in-out;
+}
+
+/* Deep Psychological Horror Visual Atmosphere */
+@keyframes veins-pulse {
+  0% {
+    opacity: 0.35;
+    transform: scale(1);
+    filter: drop-shadow(0 0 10px rgba(180, 0, 0, 0.4));
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.015);
+    filter: drop-shadow(0 0 24px rgba(255, 0, 40, 0.8));
+  }
+  100% {
+    opacity: 0.35;
+    transform: scale(1);
+    filter: drop-shadow(0 0 10px rgba(180, 0, 0, 0.4));
+  }
+}
+
+.animate-veins-pulse {
+  animation: veins-pulse 1.6s infinite ease-in-out;
+}
+
+@keyframes watching-eye-glow {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(0.95);
+  }
+  45% {
+    opacity: 0.95;
+    transform: scale(1.05);
+  }
+  50% {
+    opacity: 0.1;
+    transform: scaleY(0.1);
+  }
+  55% {
+    opacity: 0.95;
+    transform: scale(1.05);
+  }
+}
+
+.animate-watching-eye {
+  animation: watching-eye-glow 4.8s infinite ease-in-out;
+}
+
+@keyframes heartbeat-vignette {
+  0% {
+    box-shadow: inset 0 0 70px rgba(120, 0, 0, 0.5);
+  }
+  15% {
+    box-shadow: inset 0 0 160px rgba(255, 0, 40, 0.85);
+  }
+  30% {
+    box-shadow: inset 0 0 100px rgba(160, 0, 20, 0.65);
+  }
+  45% {
+    box-shadow: inset 0 0 140px rgba(220, 0, 30, 0.8);
+  }
+  100% {
+    box-shadow: inset 0 0 70px rgba(120, 0, 0, 0.5);
+  }
+}
+
+.animate-heartbeat-vignette {
+  animation: heartbeat-vignette 0.85s infinite ease-out;
+}
+
+@keyframes jumpscare-shock {
+  0% {
+    opacity: 0;
+    transform: scale(0.9) translate(-50%, -50%);
+    filter: invert(100%) contrast(300%) drop-shadow(0 0 30px red);
+  }
+  20% {
+    opacity: 1;
+    transform: scale(1.08) translate(-47%, -52%);
+    filter: invert(100%) contrast(400%) drop-shadow(0 0 50px red);
+  }
+  60% {
+    opacity: 0.95;
+    transform: scale(1.02) translate(-51%, -49%);
+    filter: invert(80%) contrast(250%) drop-shadow(0 0 40px darkred);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.2) translate(-50%, -50%);
+    filter: none;
+  }
+}
+
+.animate-jumpscare-shock {
+  animation: jumpscare-shock 0.28s forwards ease-out;
+}
+
+@keyframes claustrophobia-warp {
+  0%, 100% {
+    transform: scale(1);
+    filter: contrast(100%) saturate(100%);
+  }
+  50% {
+    transform: scale(0.985);
+    filter: contrast(135%) saturate(140%) brightness(92%);
+  }
+}
+
+.animate-claustrophobia-warp {
+  animation: claustrophobia-warp 3.5s infinite ease-in-out;
+}
+
+@keyframes blood-drip {
+  0% {
+    height: 0px;
+    opacity: 0.8;
+  }
+  80% {
+    height: 48px;
+    opacity: 0.9;
+  }
+  100% {
+    height: 54px;
+    opacity: 0;
+  }
+}
+
+.animate-blood-drip {
+  animation: blood-drip 4s infinite ease-in;
+}
+
+/* Visceral Biological Horror Animations */
+@keyframes predatory-breathe {
+  0%, 100% {
+    transform: scale(1) translateY(0);
+  }
+  50% {
+    transform: scale(1.025, 0.98) translateY(1px);
+  }
+}
+
+.animate-predatory-breathe {
+  animation: predatory-breathe 3.6s infinite ease-in-out;
+}
+
+@keyframes tendril-wriggle {
+  0%, 100% {
+    transform: rotate(0deg) skewX(0deg);
+  }
+  25% {
+    transform: rotate(2.5deg) skewX(2deg);
+  }
+  75% {
+    transform: rotate(-2.5deg) skewX(-2deg);
+  }
+}
+
+.animate-tendril-wriggle {
+  animation: tendril-wriggle 4.2s infinite ease-in-out;
+}
+
+@keyframes horror-shudder {
+  0%, 100% { transform: translate(0, 0); }
+  15% { transform: translate(-3px, 2px) skewX(2deg); }
+  35% { transform: translate(3px, -2px) skewX(-2deg); }
+  55% { transform: translate(-2px, -3px) skewY(1deg); }
+  75% { transform: translate(2px, 3px) skewY(-1deg); }
+}
+
+.animate-horror-shudder {
+  animation: horror-shudder 0.35s infinite;
+}
+
+@keyframes arterial-pulse {
+  0%, 100% {
+    opacity: 0.75;
+    filter: drop-shadow(0 0 4px rgba(239, 68, 68, 0.6));
+  }
+  50% {
+    opacity: 1;
+    filter: drop-shadow(0 0 16px rgba(220, 38, 38, 0.95)) brightness(1.25);
+  }
+}
+
+.animate-arterial-pulse {
+  animation: arterial-pulse 1.8s infinite ease-in-out;
+}
+
+@keyframes ocular-twitch-violent {
+  0%, 78%, 100% { transform: translate(0, 0) scale(1); }
+  80% { transform: translate(-4px, 3px) scale(1.1); }
+  83% { transform: translate(5px, -3px) scale(0.92); }
+  86% { transform: translate(-3px, -2px) scale(1.06); }
+  90% { transform: translate(3px, 1px) scale(1); }
+}
+
+.animate-ocular-twitch-violent {
+  animation: ocular-twitch-violent 3.2s infinite ease-in-out;
+}
+
+/* Entity Discovery Cyber Glitch Fade-In Animation */
+@keyframes entity-card-glitch-in {
+  0% {
+    opacity: 0;
+    transform: translateX(-16px) skewX(8deg) scale(0.94);
+    filter: blur(5px) brightness(2.5) contrast(180%);
+    clip-path: inset(20% 0 60% 0);
+  }
+  15% {
+    opacity: 0.85;
+    transform: translateX(8px) skewX(-6deg) scale(1.02);
+    filter: drop-shadow(-3px 0 10px rgba(239, 68, 68, 0.9)) hue-rotate(90deg);
+    clip-path: inset(5% 0 25% 0);
+  }
+  30% {
+    opacity: 0.4;
+    transform: translateX(-4px) skewX(4deg) scale(0.98);
+    filter: drop-shadow(3px 0 8px rgba(6, 182, 212, 0.8));
+    clip-path: inset(45% 0 15% 0);
+  }
+  48% {
+    opacity: 0.95;
+    transform: translateX(4px) skewX(-2deg) scale(1.01);
+    filter: brightness(1.6) contrast(140%);
+    clip-path: inset(0 0 10% 0);
+  }
+  65% {
+    opacity: 0.75;
+    transform: translateX(-2px) skewX(1deg);
+    filter: drop-shadow(0 0 12px rgba(220, 38, 38, 0.6));
+    clip-path: none;
+  }
+  85% {
+    opacity: 0.98;
+    transform: translateX(1px) skewX(0);
+    filter: none;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0) skewX(0) scale(1);
+    filter: none;
+    clip-path: none;
+  }
+}
+
+.animate-entity-card-glitch-in {
+  animation: entity-card-glitch-in 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes glitch-badge-pulse {
+  0%, 100% {
+    box-shadow: 0 0 6px rgba(239, 68, 68, 0.6);
+    border-color: rgba(239, 68, 68, 0.8);
+  }
+  50% {
+    box-shadow: 0 0 14px rgba(239, 68, 68, 0.95), 0 0 22px rgba(168, 85, 247, 0.6);
+    border-color: rgba(248, 113, 113, 1);
+  }
+}
+
+.animate-glitch-badge-pulse {
+  animation: glitch-badge-pulse 1.8s infinite ease-in-out;
+}
+
+/* Visceral Horror Tendril & Vascular Spasm Animations */
+@keyframes vein-throb {
+  0%, 100% {
+    opacity: 0.45;
+    filter: drop-shadow(0 0 2px rgba(220, 38, 38, 0.4));
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.95;
+    filter: drop-shadow(0 0 12px rgba(239, 68, 68, 0.9)) drop-shadow(0 0 20px rgba(185, 28, 28, 0.8));
+    transform: scale(1.02);
+  }
+}
+
+.animate-vein-throb {
+  animation: vein-throb 2.4s infinite ease-in-out;
+}
+
+@keyframes visceral-spasm {
+  0%, 88%, 100% { transform: scale(1) rotate(0deg); }
+  90% { transform: scale(1.04) rotate(-1.5deg) translate(-2px, 1px); }
+  92% { transform: scale(0.97) rotate(2deg) translate(3px, -2px); }
+  94% { transform: scale(1.02) rotate(-1deg) translate(-1px, 2px); }
+  96% { transform: scale(0.99) rotate(0.5deg); }
+}
+
+.animate-visceral-spasm {
+  animation: visceral-spasm 3.8s infinite ease-in-out;
+}
+
+@keyframes glass-crack-flash {
+  0% {
+    opacity: 0.95;
+    filter: drop-shadow(0 0 16px rgba(255, 255, 255, 0.9)) drop-shadow(0 0 30px rgba(239, 68, 68, 0.8));
+  }
+  100% {
+    opacity: 0.7;
+    filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.4));
+  }
+}
+
+.animate-glass-crack-flash {
+  animation: glass-crack-flash 0.6s ease-out forwards;
+}
+
+/* Touch Friendly Utilities */
+.touch-manipulation {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
